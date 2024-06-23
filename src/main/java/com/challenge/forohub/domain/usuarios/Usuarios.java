@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
@@ -23,11 +23,6 @@ public class Usuarios {
     private String correoElectronico;
     private String contrasena;
 
-    @ManyToMany
-    @JoinTable(
-            name = "Usuario_Perfil",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "perfil_id")
-    )
-    private Set<Perfil> perfiles;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Perfil> perfiles;
 }

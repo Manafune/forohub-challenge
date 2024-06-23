@@ -1,5 +1,6 @@
 package com.challenge.forohub.domain.perfil;
 
+import com.challenge.forohub.domain.usuarios.Usuarios;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -17,4 +18,7 @@ public class Perfil {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuarios usuario;
 }
