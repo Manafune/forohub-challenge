@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
@@ -29,7 +31,7 @@ public class Usuario implements UserDetails {
     private String correoElectronico;
     private String contrasena;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "usuario_perfil",
             joinColumns = @JoinColumn(name = "usuario_id"),
@@ -37,20 +39,15 @@ public class Usuario implements UserDetails {
     )
     private List<Perfil> perfiles;
 
+    private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public Usuario(DatosRegistroUsuario datosRegistroUsuario) {
         this.nombre = datosRegistroUsuario.nombre();
         this.correoElectronico = datosRegistroUsuario.correoElectronico();
-        this.contrasena = datosRegistroUsuario.contrasena();
+        this.contrasena = passwordEncoder.encode(datosRegistroUsuario.contrasena());
         this.perfiles = datosRegistroUsuario.perfiles().stream().map(p -> new Perfil(p.getNombre())).collect(Collectors.toList());
     }
 
-    public void setPerfiles(List<Perfil> perfiles) {
-        this.perfiles = perfiles;
-        for (Perfil perfil : perfiles) {
-            perfil.getUsuarios().add(this);
-        }
-    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));

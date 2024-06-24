@@ -2,7 +2,7 @@ create table respuesta(
     id bigint auto_increment,
     mensaje text not null,
     topico bigint not null,
-    fechaCreacion timestamp default current_timestamp,
+    fecha_creacion timestamp default current_timestamp,
     autor bigint not null,
     solucion boolean default false,
     primary key (id),

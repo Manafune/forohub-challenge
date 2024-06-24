@@ -31,12 +31,6 @@ public class Perfil {
     public String toString() {
         return "Perfil [nombre=" + nombre + ", usuarios=" + usuarios + "]";
     }
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-        for (Usuario usuario : usuarios) {
-            usuario.getPerfiles().add(this);
-        }
-    }
 
 
 }

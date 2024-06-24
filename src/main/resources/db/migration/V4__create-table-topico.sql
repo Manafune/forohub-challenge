@@ -1,8 +1,8 @@
 create table topico(
     id bigint not null auto_increment,
-    titulo varchar(200) not null,
+    titulo varchar(200) not null unique,
     mensaje text not null,
-    fechaCreacion timestamp default current_timestamp,
+    fecha_creacion timestamp default current_timestamp,
     status varchar(50),
     autor bigint not null,
     curso bigint not null,
