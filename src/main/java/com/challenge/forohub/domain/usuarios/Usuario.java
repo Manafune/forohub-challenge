@@ -82,4 +82,16 @@ public class Usuario implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public void actualizarDatos(DatosActualizarUsuario datosActualizarUsuario) {
+        if(datosActualizarUsuario.nombre() != null){
+            this.nombre = datosActualizarUsuario.nombre();
+        }
+        if(datosActualizarUsuario.correoElectronico()!= null){
+            this.correoElectronico = datosActualizarUsuario.correoElectronico();
+        }
+        if (datosActualizarUsuario.contrasena() != null) {
+            this.contrasena = passwordEncoder.encode(datosActualizarUsuario.contrasena());
+        }
+    }
 }
