@@ -4,9 +4,9 @@ create table topico(
     mensaje text not null,
     fecha_creacion timestamp default current_timestamp,
     status varchar(50),
-    autor bigint not null,
-    curso bigint not null,
+    autor_id bigint not null,
+    curso_id bigint not null,
     primary key (id),
-    foreign key (autor) references usuarios(id),
-    foreign key (curso) references cursos(id)
+    foreign key (autor_id) references usuarios(id),
+    foreign key (curso_id) references cursos(id)
 );

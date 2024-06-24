@@ -94,4 +94,15 @@ public class Usuario implements UserDetails {
             this.contrasena = passwordEncoder.encode(datosActualizarUsuario.contrasena());
         }
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", correoElectronico='" + correoElectronico + '\'' +
+                ", contrasena='" + contrasena + '\'' +
+                ", perfiles=" + perfiles +
+                '}';
+    }
 }

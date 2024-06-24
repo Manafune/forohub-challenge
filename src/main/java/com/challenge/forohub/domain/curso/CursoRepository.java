@@ -2,6 +2,8 @@ package com.challenge.forohub.domain.curso;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface CursoRepository extends JpaRepository<Curso,Long> {
-    Curso findByNombre(String nombre);
+    Curso findByNombreIgnoreCase(String nombre);
 }
