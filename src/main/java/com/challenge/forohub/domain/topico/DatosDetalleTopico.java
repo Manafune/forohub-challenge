@@ -7,7 +7,11 @@ public record DatosDetalleTopico(
         Long id,
         String titulo,
         String mensaje,
-        LocalDateTime fechaCreacion
+        LocalDateTime fechaCreacion,
+        Boolean status,
+        String autor,
+        String curso
+
 
 ) {
 }

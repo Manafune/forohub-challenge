@@ -6,10 +6,7 @@ import com.challenge.forohub.domain.usuarios.Usuario;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.awt.*;
 import java.sql.Timestamp;
@@ -20,6 +17,7 @@ import java.util.Optional;
 @Entity(name = "Topico")
 @Table(name = "topico")
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -49,6 +47,13 @@ public class Topico {
         this.mensaje = datosRegistroTopico.mensaje();
         this.autor = datosRegistroTopico.idUsuario();
         this.curso = datosRegistroTopico.nombreCurso();
+    }
+
+    public void actualizarDatos(DatosInputTopico datos, Usuario autor, Curso curso) {
+        this.titulo = datos.titulo();
+        this.mensaje = datos.mensaje();
+        this.autor = autor;
+        this.curso = curso;
     }
 
     public void eliminar() {
