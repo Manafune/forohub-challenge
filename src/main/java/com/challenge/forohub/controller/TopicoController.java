@@ -38,7 +38,7 @@ public class TopicoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DatosListarTopicos>> consultar(
+    public ResponseEntity<Page<DatosListarTopicos>> listarTopicosActivos(
             @PageableDefault(size = 10, sort = { "fechaCreacion" }, direction = Sort.Direction.ASC) Pageable paginacion) {
         return ResponseEntity.ok(topicoRepository.findByStatusTrue(paginacion).map(DatosListarTopicos::new));
     }
@@ -69,17 +69,6 @@ public class TopicoController {
         );
         return ResponseEntity.ok(datosDetalleTopico);
     }
-
-//    @PutMapping("/{id}")
-//    @Transactional
-//    public ResponseEntity<DatosDetalleTopico> actualizarTopico(@PathVariable Long id, @RequestBody DatosActualizarTopico datos) {
-//        Optional<Topico> topico = topicoService.buscarTopicoPorId(id);
-//        if(!topico.isPresent()){
-//            return ResponseEntity.notFound().build();
-//        }
-//        Topico topicoActualizar = topicoService.actualizarTopico(id, datos);
-//        return ResponseEntity.ok(new DatosDetalleTopico(topicoActualizar.getId(),topicoActualizar.getTitulo(),topicoActualizar.getMensaje(),topicoActualizar.g));
-//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<DatosListarTopicos> actualizarTopico(@PathVariable Long id, @RequestBody DatosInputTopico datos) {

@@ -40,4 +40,13 @@ public class Respuesta {
 
     }
 
+    public void actualizarDatos(DatosActualizarRespuesta datosActualizarRespuesta) {
+        if(datosActualizarRespuesta.mensaje() != null) {
+            this.mensaje = datosActualizarRespuesta.mensaje();
+        }
+        if(datosActualizarRespuesta.solucion() != null) {
+            this.solucion = datosActualizarRespuesta.solucion() ;
+        }
+    }
+
 }
