@@ -1,6 +1,8 @@
 package com.challenge.forohub.controller;
 
 import com.challenge.forohub.domain.usuarios.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/usuarios")
+@SecurityRequirement(name = "bearer-key")
+@Tag(name = "Usuario", description = "Operaciones de gestión de usuarios")
 public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;

@@ -1,6 +1,8 @@
 package com.challenge.forohub.controller;
 
 import com.challenge.forohub.domain.topico.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -20,6 +22,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/topicos")
+@SecurityRequirement(name = "bearer-key")
+@Tag(name = "Tópico", description = "Operaciones de gestión de tópicos")
 public class TopicoController {
     @Autowired
     private TopicoService topicoService;

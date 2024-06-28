@@ -4,6 +4,8 @@ import com.challenge.forohub.domain.respuesta.*;
 import com.challenge.forohub.domain.topico.DatosInputTopico;
 import com.challenge.forohub.domain.topico.DatosListarTopicos;
 import com.challenge.forohub.domain.topico.Topico;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
@@ -20,6 +22,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/respuestas")
+@SecurityRequirement(name = "bearer-key")
+@Tag(name = "Respúesta", description = "Operaciones de gestión de respuesta")
 public class RespuestaController {
     @Autowired
     RespuestaService respuestaService;
